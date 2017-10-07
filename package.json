@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "github-api": "^3.0.0",
-    "human-readable-time": "^0.3.0",
+    "pretty-ms": "^3.0.1",
     "react": "^16.0.0",
     "react-dom": "^16.0.0"
   },
