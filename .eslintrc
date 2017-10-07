@@ -1,5 +1,4 @@
 {
-	"extends": "eslint:recommended",
   "extends": "plugin:react/recommended",
 	"env": {
 		"browser": true,
