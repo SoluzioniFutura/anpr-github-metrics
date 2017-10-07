@@ -13,6 +13,7 @@ class Repositories extends Component {
   componentDidMount() {
     gh.getUser(user).listRepos()
       .then(response => {
+        console.log(response)
         this.setState({"repos": response.data})
       })
   }
