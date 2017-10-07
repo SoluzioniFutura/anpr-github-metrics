@@ -4,7 +4,8 @@ import AvgIssueClosingTimeCounter from "./AvgIssueClosingTimeCounter"
 
 import {
   getIssues,
-  getAvgIssueClosingTime
+  getAvgIssueClosingTime,
+  getIssuesStatusRatioOverTime
 } from "./../api"
 
 class RepositoryData extends Component {
@@ -12,8 +13,12 @@ class RepositoryData extends Component {
   componentWillReceiveProps(nextProps) {
     if (nextProps.isActive && !this.state) {
       getIssues(this.props.user, this.props.name)
-        .then(getAvgIssueClosingTime)
-        .then(avgIssueClosingTime => {
+        .then(issues => Promise.all([
+          getAvgIssueClosingTime(issues),
+          getIssuesStatusRatioOverTime(issues)
+        ]))
+        .then(([avgIssueClosingTime, issuesStatusRatioOverTime]) => {
+          console.log("issuesStatusRatioOverTime", issuesStatusRatioOverTime)
           this.setState({
             "avgIssueClosingTime": Number.isNaN(avgIssueClosingTime) ?
               "Data unavailable: too few issues" :
