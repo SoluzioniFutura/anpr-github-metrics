@@ -42,7 +42,7 @@ export const getIssuesStatusRatioOverTime = (issues, startDate, endDate, granula
     const openIssues = []
     const l = issues.length;
     for (let i = 0; i < l; i++) {
-      issue = issues[i];
+      const issue = issues[i];
       if (issueExistsAtTime(issue, currentTime)){
         totalIssues.push(issue)
       }
