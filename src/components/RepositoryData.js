@@ -18,11 +18,13 @@ class RepositoryData extends Component {
           getIssuesStatusRatioOverTime(issues)
         ]))
         .then(([avgIssueClosingTime, issuesStatusRatioOverTime]) => {
-          console.log("issuesStatusRatioOverTime", issuesStatusRatioOverTime)
+          console.log(issuesStatusRatioOverTime)
           this.setState({
-            "avgIssueClosingTime": Number.isNaN(avgIssueClosingTime) ?
-              "Data unavailable: too few issues" :
-              avgIssueClosingTime
+            "avgIssueClosingTime": Number.isNaN(avgIssueClosingTime) ? "Data unavailable: too few issues" : avgIssueClosingTime,
+            "issuesStatusRatioOverTime": issuesStatusRatioOverTime.map(dataPoint => ({
+              "openIssues": dataPoint.openIssues.length,
+              "totalIssues": dataPoint.totalIssues.length
+            }))
           })
         })
     }
@@ -30,13 +32,20 @@ class RepositoryData extends Component {
 
   render() {
     return(
-      <p style={{"display": this.props.isActive ? "block" : "none" }}>
+      <div style={{"display": this.props.isActive ? "block" : "none" }}>
         {
           <AvgIssueClosingTimeCounter
             avgIssueClosingTime={this.state && this.state.avgIssueClosingTime ? this.state.avgIssueClosingTime : "loading"}
           />
         }
-      </p>
+        {
+          <p>
+            {this.state && this.state.issuesStatusRatioOverTime ?
+              this.state.issuesStatusRatioOverTime.map(dataPoint => dataPoint.openIssues + "/" + dataPoint.totalIssues + " ") :
+              "loading"}
+          </p>
+        }
+      </div>
     )
   }
 }
