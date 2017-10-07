@@ -1,11 +1,23 @@
 import React, { Component } from "react"
 
+import Loader from "./Loader"
+
+import {
+  getIssues,
+  getAvgIssueClosingTime
+} from "./../api"
+
 class RepositoryData extends Component {
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.isActive && (!this.state || (this.state && !this.state.data))) {
-      console.log("pullo i dati")
-      this.setState({"data": "dei dati"})
+    if (nextProps.isActive && !this.state) {
+      getIssues(this.props.user, this.props.name)
+        .then(getAvgIssueClosingTime)
+        .then(avgIssueClosingTime => {
+          this.setState({
+            avgIssueClosingTime
+          })
+        })
     }
   }
 
@@ -14,7 +26,17 @@ class RepositoryData extends Component {
       <p
         style={{"display": this.props.isActive ? "block" : "none" }}
       >
-        {"Test"}
+        <span>
+          {"Avg Issue Closing Time: "}
+          {
+            this.state ?
+              Number.isNaN(this.state.avgIssueClosingTime) ?
+                "Data unavailable: too few issues" :
+                this.state.avgIssueClosingTime
+              :
+              <Loader />
+          }
+        </span>
       </p>
     )
   }

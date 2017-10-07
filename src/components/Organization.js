@@ -18,7 +18,14 @@ class Organization extends Component {
   render() {
     const component = [<h1 key={"title"}>{user}</h1>]
     return(
-      this.state && this.state.repos ? component.concat([<Repositories key={"repos"} repos={this.state.repos} />]) : component.concat([<Loader key="loader" />])
+      this.state && this.state.repos ?
+      component.concat([
+        <Repositories
+          key={"repos"}
+          repos={this.state.repos}
+          user={user}
+        />]) :
+      component.concat([<Loader key="loader" />])
     )
   }
 }

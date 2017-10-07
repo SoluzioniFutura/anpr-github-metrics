@@ -33,6 +33,7 @@ class Repository extends Component {
           }
         </p>
         <RepositoryData
+          user={this.props.user}
           name={this.props.data.name}
           isActive={this.state.isActive}
         />
