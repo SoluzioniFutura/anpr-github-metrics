@@ -1,6 +1,8 @@
 import React, { Component } from "react"
 import * as network from "../network";
 
+import { name } from "./../config"
+
 class Test extends Component {
   render() {
     // CODICE QUI //

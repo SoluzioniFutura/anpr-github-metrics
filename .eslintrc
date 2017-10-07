@@ -18,6 +18,7 @@
 		"no-console": "off",
 		"strict": ["error", "global"],
 		"curly": "warn",
-    "react/jsx-key": "off"
+    "react/jsx-key": "off",
+    "react/prop-types": "off"
 	}
 }

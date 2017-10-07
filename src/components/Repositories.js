@@ -2,12 +2,14 @@ import React, { Component } from "react"
 
 import GitHub from "github-api"
 
+import { user } from "./../config"
+
 const gh = new GitHub()
 
 class Repositories extends Component {
 
   componentDidMount() {
-    gh.getUser("vforvalerio87").listRepos()
+    gh.getUser(user).listRepos()
       .then(response => {
         this.setState({"repos": response.data})
       })
