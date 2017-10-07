@@ -1,21 +1,18 @@
 import React, { Component } from "react"
 
-import GitHub from "github-api"
-
 import { user } from "./../config"
 
 import Repositories from "./Repositories"
 import Loader from "./Loader"
 
-const gh = new GitHub()
+import { getRepos } from "./../api"
 
 class Organization extends Component {
 
+  // C'È DA AGGIUNGERE UN CATCH, CON RELATIVO ERROR DISPLAY
   componentDidMount() {
-    gh.getUser(user).listRepos()
-      .then(response => {
-        this.setState({"repos": response.data})
-      })
+    getRepos(user)
+      .then(data => { this.setState({"repos": data}) })
   }
 
   render() {
