@@ -27,11 +27,13 @@ export const getAvgIssueClosingTime = (issues) => new Promise((resolve) => {
   )
 })
 
-export const getIssuesStatusRatioOverTime = (issues, startTime, endTime, granularity = 1) => new Promise((resolve, reject) => {
+export const getIssuesStatusRatioOverTime = (issues, startDate, endDate, granularity = 1) => new Promise((resolve, reject) => {
+  const startTime = startDate.getTime()
+  const endTime = endDate.getTime()
   if (granularity < 1) {
     granularity = 1
   }
-  const timeIncrement = granularity * 60 * 60
+  const timeIncrement = granularity * 1000 * 60 * 60
   const out = []
   let currentTime = startTime;
   while (currentTime < endTime) {
@@ -39,10 +41,10 @@ export const getIssuesStatusRatioOverTime = (issues, startTime, endTime, granula
     const totalIssues = []
     const openIssues = []
     issues.forEach(issue => {
-      if (issueExistsAtTime(issue)){
+      if (issueExistsAtTime(issue, currentTime)){
         totalIssues.push(issue)
       }
-      if (isIssueOpenAtTime(issue)){
+      if (isIssueOpenAtTime(issue, currentTime)){
         openIssues.push(issue)
       }
     })
