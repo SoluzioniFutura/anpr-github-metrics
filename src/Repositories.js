@@ -15,7 +15,6 @@ class Repositories extends Component {
 
   render() {
     if (this.state && this.state.repos) {
-      console.log(this.state.repos)
       return this.state.repos.map(repo => <p key={repo.name}>{repo.name}</p>)
     } else {
       return <p>{"Loading..."}</p>
