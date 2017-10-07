@@ -22,7 +22,7 @@ class Repositories extends Component {
     if (this.state && this.state.repos) {
       return (
         <ul>
-          { this.state.repos.map(repo => <li key={ repo.name }><Repository data={ repo } /></li>) }
+          { this.state.repos.map(repo => <li key={ repo.name } className = { 'repo' }><Repository data={ repo } /></li>) }
         </ul>
       )
     } else {
