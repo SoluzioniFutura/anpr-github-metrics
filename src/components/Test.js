@@ -8,7 +8,7 @@ class Test extends Component {
 
     // FINE CODICE //
     return(
-      <p>{"Stiamo testando per voi =<^.^>="}</p>
+      <p style={{"display": "none"}}>{"Stiamo testando per voi =<^.^>="}</p>
     )
   }
 }
