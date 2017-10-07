@@ -1,5 +1,4 @@
 import GitHub from "github-api";
-import Repository from "github-api"
 const gh = new GitHub();
 
 export const getRepos = (user) => new Promise((resolve, reject) => {
@@ -8,9 +7,8 @@ export const getRepos = (user) => new Promise((resolve, reject) => {
     .then(reject)
 });
 
-export const getOpenIssues = (repoName) => new Promise((resolve, reject) => {
-  const repo = new Repository(repoName);
-  repo.listIssues()
+export const getOpenIssues = (user, repo) => new Promise((resolve, reject) => {
+  gh.getIssues(user, repo).listIssues({ state: 'open' })
     .then(resolve)
     .catch(reject)
 });
