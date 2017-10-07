@@ -11,7 +11,6 @@ export const getRepos = () => new Promise((resolve, reject) => {
 
 
 export const test = () => new Promise((resolve, reject) => {
+  console.log(test);
   resolve('test')
 });
-
-console.log('test');
