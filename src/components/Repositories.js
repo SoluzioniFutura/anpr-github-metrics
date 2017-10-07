@@ -4,6 +4,8 @@ import GitHub from "github-api"
 
 import { user } from "./../config"
 
+import Repository from "./Repository"
+
 const gh = new GitHub()
 
 class Repositories extends Component {
@@ -19,7 +21,7 @@ class Repositories extends Component {
     if (this.state && this.state.repos) {
       return (
         <ul>
-          { this.state.repos.map(repo => <li key={repo.name}>{repo.name}</li>) }
+          { this.state.repos.map(repo => <li key={ repo.name }><Repository data={ repo } /></li>) }
         </ul>
       )
     } else {
