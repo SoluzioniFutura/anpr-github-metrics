@@ -1,6 +1,7 @@
 import React, { Component } from "react"
 
 import AvgIssueClosingTimeCounter from "./AvgIssueClosingTimeCounter"
+import IssuesStatusRatioOverTimeGraph from "./IssuesStatusRatioOverTimeGraph"
 
 import {
   getIssues,
@@ -23,7 +24,8 @@ class RepositoryData extends Component {
             "avgIssueClosingTime": Number.isNaN(avgIssueClosingTime) ? "Data unavailable: too few issues" : avgIssueClosingTime,
             "issuesStatusRatioOverTime": issuesStatusRatioOverTime.map(dataPoint => ({
               "openIssues": dataPoint.openIssues.length,
-              "totalIssues": dataPoint.totalIssues.length
+              "totalIssues": dataPoint.totalIssues.length,
+              "time": dataPoint.time
             }))
           })
         })
@@ -39,11 +41,13 @@ class RepositoryData extends Component {
           />
         }
         {
-          <p>
-            {this.state && this.state.issuesStatusRatioOverTime ?
-              this.state.issuesStatusRatioOverTime.map(dataPoint => dataPoint.openIssues + "/" + dataPoint.totalIssues + " ") :
-              "loading"}
-          </p>
+          <IssuesStatusRatioOverTimeGraph
+            issuesStatusRatioOverTime={
+              this.state && this.state.issuesStatusRatioOverTime ?
+                this.state.issuesStatusRatioOverTime :
+                "loading"
+            }
+          />
         }
       </div>
     )
