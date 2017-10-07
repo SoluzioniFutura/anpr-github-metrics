@@ -1,11 +1,12 @@
 import React from "react"
 
 import Repositories from "./Repositories"
+import Test from "./Test"
 
 const App = () =>
-  <div>
-    <Repositories />
-  </div>
-
+  [
+    <Repositories />,
+    <Test />
+  ]
 
 export default App
