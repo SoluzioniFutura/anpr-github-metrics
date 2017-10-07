@@ -10,7 +10,7 @@ class Test extends Component {
       .then(console.log)
     // FINE CODICE //
     return(
-      <p>{"Stiamo testando per voi =<^.^>="}</p>
+      <p style={{"display": "none"}}>{"Stiamo testando per voi =<^.^>="}</p>
     )
   }
 }
