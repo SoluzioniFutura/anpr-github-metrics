@@ -7,14 +7,7 @@ class Test extends Component {
   render() {
     // CODICE QUI //
     network.getIssues(user, repo)
-      .then(issues => {
-        return network.getIssuesStatusRatioOverTime(
-          issues,
-          new Date("September 13, 2017 11:13:00"),
-          new Date("November 13, 2017 11:13:00"),
-          24
-        )
-      })
+      //.then(network.getIssuesNoLabel(issues))
       .then(console.log)
       .catch(console.error)
     // FINE CODICE //

@@ -19,15 +19,15 @@ export const getIssues = (user, repoName) => new Promise((resolve, reject) => {
 })
 
 export const getAvgIssueClosingTime = (issues) => new Promise((resolve) => {
-  const openIssues = issues.filter(({ state }) => state === 'closed')
+  const closedIssues = issues.filter(filterIssue('closed'))
 
-  resolve(Math.round(openIssues
+  resolve(Math.round(closedIssues
     .map(({ created_at, closed_at }) => new Date(closed_at).getTime() - new Date(created_at).getTime())
-    .reduce((acc, time) => acc + time, 0) / openIssues.length)
+    .reduce((acc, time) => acc + time, 0) / closedIssues.length)
   )
 })
 
-export const getIssuesStatusRatioOverTime = (issues, startDate, endDate, granularity = 1) => new Promise((resolve, reject) => {
+export const getIssuesStatusRatioOverTime = (issues, startDate, endDate, granularity = 24) => new Promise((resolve, reject) => {
   const startTime = startDate.getTime()
   const endTime = endDate.getTime()
   if (granularity < 1) {
@@ -59,6 +59,10 @@ export const getIssuesStatusRatioOverTime = (issues, startDate, endDate, granula
   resolve(out)
 })
 
+const getIssuesNoLabel = () => new Promise(resolve => {
+
+})
+
 const issueExistsAtTime = ({ created_at }, curTime) => new Date(created_at).getTime() < curTime
 
 const isIssueOpenAtTime = ({ created_at, closed_at }, curTime) => {
@@ -69,3 +73,5 @@ const isIssueOpenAtTime = ({ created_at, closed_at }, curTime) => {
   if (closureTime > curTime) return true;
   return false
 }
+
+const filterIssue = desiredState => ({state}) => state === desiredState
