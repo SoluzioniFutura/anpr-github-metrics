@@ -7,6 +7,7 @@ class Test extends Component {
   render() {
     // CODICE QUI //
     network.getIssues(user, repo)
+      
       .then(console.log)
       .catch(console.error)
     // FINE CODICE //
