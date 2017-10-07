@@ -10,7 +10,7 @@ class Test extends Component {
       .then(issues => {
         return network.getIssuesStatusRatioOverTime(
           issues,
-          new Date("October 13, 2017 11:13:00"),
+          new Date("September 13, 2017 11:13:00"),
           new Date("November 13, 2017 11:13:00"),
           24
         )
