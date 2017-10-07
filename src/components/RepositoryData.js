@@ -14,20 +14,25 @@ class RepositoryData extends Component {
   componentWillReceiveProps(nextProps) {
     if (nextProps.isActive && !this.state) {
       getIssues(this.props.user, this.props.name)
-        .then(issues => Promise.all([
-          getAvgIssueClosingTime(issues),
+        .then(issues => {
+          getAvgIssueClosingTime(issues)
+            .then(avgIssueClosingTime => {
+              this.setState({
+                "avgIssueClosingTime": Number.isNaN(avgIssueClosingTime) ?
+                  "Data unavailable: too few issues" :
+                  avgIssueClosingTime
+              })
+            })
           getIssuesStatusRatioOverTime(issues)
-        ]))
-        .then(([avgIssueClosingTime, issuesStatusRatioOverTime]) => {
-          console.log(issuesStatusRatioOverTime)
-          this.setState({
-            "avgIssueClosingTime": Number.isNaN(avgIssueClosingTime) ? "Data unavailable: too few issues" : avgIssueClosingTime,
-            "issuesStatusRatioOverTime": issuesStatusRatioOverTime.map(dataPoint => ({
-              "openIssues": dataPoint.openIssues.length,
-              "totalIssues": dataPoint.totalIssues.length,
-              "time": dataPoint.time
-            }))
-          })
+            .then(issuesStatusRatioOverTime => {
+              this.setState({
+                "issuesStatusRatioOverTime": issuesStatusRatioOverTime.map(dataPoint => ({
+                  "openIssues": dataPoint.openIssues.length,
+                  "totalIssues": dataPoint.totalIssues.length,
+                  "time": dataPoint.time
+                }))
+              })
+            })
         })
     }
   }
