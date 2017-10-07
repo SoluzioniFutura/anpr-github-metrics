@@ -59,9 +59,7 @@ export const getIssuesStatusRatioOverTime = (issues, startDate, endDate, granula
   resolve(out)
 })
 
-const getIssuesNoLabel = () => new Promise(resolve => {
-
-})
+export const getNoLabelIssues = issues => new Promise(resolve => resolve(issues.filter(({ labels, state }) => state === 'open' && !labels.length )))
 
 const issueExistsAtTime = ({ created_at }, curTime) => new Date(created_at).getTime() < curTime
 
