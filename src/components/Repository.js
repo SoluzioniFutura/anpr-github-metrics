@@ -28,9 +28,7 @@ class Repository extends Component {
           <span style={{"marginRight": "20px"}}>
             { this.props.data.name }
           </span>
-          {
-            <span>{"Open issues: "}{ this.props.data.open_issues_count }</span>
-          }
+          <span>{"Open issues: "}{ this.props.data.open_issues_count }</span>
         </p>
         <RepositoryData
           user={this.props.user}

@@ -8,7 +8,6 @@ import Loader from "./Loader"
 import { getRepos } from "./../api"
 
 class Organization extends Component {
-  // C'È DA AGGIUNGERE UN CATCH, CON RELATIVO ERROR DISPLAY
   componentDidMount() {
     getRepos(user)
       .then(data => { this.setState({"repos": data}) })
