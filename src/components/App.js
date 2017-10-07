@@ -1,11 +1,13 @@
 import React from "react"
 
-import Repositories from "./Repositories"
+import Organization from "./Organization"
 import Test from "./Test"
+
+import { user } from "./../config"
 
 const App = () =>
   [
-    <Repositories />,
+    <Organization name={user} />,
     <Test />
   ]
 

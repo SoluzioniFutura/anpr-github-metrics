@@ -1,5 +1,7 @@
 import React, { Component } from "react"
 
+import { name } from "./../config"
+
 class Test extends Component {
   render() {
     // CODICE QUI //
