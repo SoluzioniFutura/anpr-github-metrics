@@ -1,27 +1,31 @@
 import React, { Component } from "react"
 
-import GitHub from "github-api"
-
 import { user } from "./../config"
 
 import Repositories from "./Repositories"
 import Loader from "./Loader"
 
-const gh = new GitHub()
+import { getRepos } from "./../api"
 
 class Organization extends Component {
 
+  // C'È DA AGGIUNGERE UN CATCH, CON RELATIVO ERROR DISPLAY
   componentDidMount() {
-    gh.getUser(user).listRepos()
-      .then(response => {
-        this.setState({"repos": response.data})
-      })
+    getRepos(user)
+      .then(data => { this.setState({"repos": data}) })
   }
 
   render() {
     const component = [<h1 key={"title"}>{user}</h1>]
     return(
-      this.state && this.state.repos ? component.concat([<Repositories key={"repos"} repos={this.state.repos} />]) : component.concat([<Loader key="loader" />])
+      this.state && this.state.repos ?
+      component.concat([
+        <Repositories
+          key={"repos"}
+          repos={this.state.repos}
+          user={user}
+        />]) :
+      component.concat([<Loader key="loader" />])
     )
   }
 }
