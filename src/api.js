@@ -27,7 +27,12 @@ export const getAvgIssueClosingTime = (issues) => new Promise((resolve) => {
   )
 })
 
-export const getIssuesStatusRatioOverTime = (issues, startDate, endDate, granularity = 24) => new Promise((resolve, reject) => {
+export const getIssuesStatusRatioOverTime = (
+  issues,
+  startDate = new Date(Date.now() - 30*24*3600*1000),
+  endDate = new Date(Date.now()),
+  granularity = 24
+) => new Promise((resolve, reject) => {
   const startTime = startDate.getTime()
   const endTime = endDate.getTime()
   if (granularity < 1) {
@@ -67,10 +72,10 @@ const issueExistsAtTime = ({ created_at }, curTime) => new Date(created_at).getT
 
 const isIssueOpenAtTime = ({ created_at, closed_at }, curTime) => {
   const creationTime = new Date(created_at).getTime()
-  if (creationTime > curTime) return false;
-  if (!closed_at) return true;
+  if (creationTime > curTime) { return false; }
+  if (!closed_at) { return true; }
   const closureTime = new Date(closed_at).getTime()
-  if (closureTime > curTime) return true;
+  if (closureTime > curTime) { return true; }
   return false
 }
 
