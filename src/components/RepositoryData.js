@@ -13,8 +13,10 @@ class RepositoryData extends Component {
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.isActive && !this.state) {
+
       getIssues(this.props.user, this.props.name)
         .then(issues => {
+
           getAvgIssueClosingTime(issues)
             .then(avgIssueClosingTime => {
               this.setState({
@@ -23,6 +25,7 @@ class RepositoryData extends Component {
                   avgIssueClosingTime
               })
             })
+
           getIssuesStatusRatioOverTime(issues)
             .then(issuesStatusRatioOverTime => {
               this.setState({
@@ -33,7 +36,8 @@ class RepositoryData extends Component {
                 }))
               })
             })
-        })
+
+      })
     }
   }
 
