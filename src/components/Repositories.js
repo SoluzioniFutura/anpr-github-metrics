@@ -1,8 +1,4 @@
-import React, { Component } from "react"
-
-import GitHub from "github-api"
-
-import { user } from "./../config"
+import React from "react"
 
 import Repository from "./Repository"
 
@@ -22,11 +18,9 @@ class Repositories extends Component {
     if (this.state && this.state.repos) {
       return (
         <ul>
-          { this.state.repos.map(repo => <li key={ repo.name } className = { 'repo' }><Repository data={ repo } /></li>) }
+          {this.state.repos.map(repo => <li key={repo.name} className={'repo'}><Repository data={repo}/></li>)}
         </ul>
       )
-    } else {
-      return <p>{"Loading..."}</p>
     }
   }
 }

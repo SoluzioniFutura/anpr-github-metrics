@@ -1,20 +1,31 @@
-import React from "react"
+import React, { Component } from "react"
+
+import { user } from "./../config"
 
 import Repositories from "./Repositories"
+import Loader from "./Loader"
 
-const Organization = props => [
-  <nav className = { 'navbar' }>
-    <div>
-      <h1 className = { 'title is-1'}>
-        { props.name }
-      </h1>
-      <a className = { 'button edit-button' }>
-        Edit
-      </a>
-    </div>
-    <input type = { 'text' } className = { 'input filter' } />
-  </nav>,
-  <Repositories key = { 'repos' } />
-]
+import { getRepos } from "./../api"
 
+class Organization extends Component {
+  // C'È DA AGGIUNGERE UN CATCH, CON RELATIVO ERROR DISPLAY
+  componentDidMount() {
+    getRepos(user)
+      .then(data => { this.setState({"repos": data}) })
+  }
+
+  render() {
+    const component = [<h1 key={"title"}>{user}</h1>]
+    return(
+      this.state && this.state.repos ?
+      component.concat([
+        <Repositories
+          key={"repos"}
+          repos={this.state.repos}
+          user={user}
+        />]) :
+      component.concat([<Loader key="loader" />])
+    )
+  }
+}
 export default Organization
