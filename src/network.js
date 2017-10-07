@@ -1,16 +1,13 @@
 import GitHub from "github-api";
 const gh = new GitHub();
 
-const user = "expressjs";
-export const getRepos = () => new Promise((resolve, reject) => {
-  gh.listRepos(user)
-    .then(resolve)
+export const getRepos = (user) => new Promise((resolve, reject) => {
+  gh.getUser(user).listRepos()
+    .then(({ data }) => resolve(data.map(({ name }) => name )))
     .then(reject)
 });
 
-
-
 export const test = () => new Promise((resolve, reject) => {
-  console.log(test);
+  console.log(test)
   resolve('test')
 });
