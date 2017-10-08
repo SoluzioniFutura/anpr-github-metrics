@@ -26,7 +26,7 @@ class Repository extends Component {
           <span className = { "panel-icon" }>
             <i className = { "fa fa-book" }/>
           </span>
-          <span onClick = { null }>{ repo.name } (Open issues: { repo.open_issues_count })</span>
+          <span>{ repo.name } (Open issues: { repo.open_issues_count })</span>
         </a>
       <RepositoryData
         repo = { repo }

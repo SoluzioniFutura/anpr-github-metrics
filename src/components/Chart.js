@@ -4,11 +4,13 @@ import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, Legend, Responsi
 const CustomTooltip = (props) => {
   const { openIssues, closedIssues, totalIssues, name } = props.payload[0] ? props.payload[0].payload : {}
   return (
-    <div className="custom-tooltip" style = {{ "background": "#ffffff" }}>
-      <p className="label">{ name }</p>
-      <p className="label">Open Issues: { openIssues }</p>
-      <p className="label">Closed Issues: { closedIssues }</p>
-      <p className="label">Total Issues: { totalIssues }</p>
+    <div className = { "custom-tooltip card" } style = {{ "background": "#ffffff" }}>
+      <div className = { "card-content" }>
+        <p className = { "label" }>{ name }</p>
+        <p className = { "label" }>Open Issues: { openIssues }</p>
+        <p className = { "label" }>Closed Issues: { closedIssues }</p>
+        <p className = { "label" }>Total Issues: { totalIssues }</p>
+      </div>
     </div>
   )
 }
