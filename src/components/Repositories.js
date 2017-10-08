@@ -1,8 +1,10 @@
 import React from "react"
 
 import Repository from "./Repository"
+import Filter from './Filter'
 
-const Repositories = props =>
+const Repositories = props => [
+  <Filter style = {{ margin: '10px' }}/>,
   <ul>
     {
       props.repos.map(repo =>
@@ -15,5 +17,6 @@ const Repositories = props =>
       )
     }
   </ul>
+]
 
 export default Repositories

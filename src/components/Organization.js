@@ -15,7 +15,13 @@ class Organization extends Component {
   }
 
   render() {
-    const component = [<h1 key={"title"}>{user}</h1>]
+    const component = [
+      <nav className = { 'panel' } key = { 'navbar' }>
+        <p className = { 'panel-heading' }>
+          { user }
+        </p>
+      </nav>
+    ]
     return(
       this.state && this.state.repos ?
       component.concat([
