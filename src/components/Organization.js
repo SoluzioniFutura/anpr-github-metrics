@@ -4,6 +4,7 @@ import { user } from "./../config"
 
 import Repositories from "./Repositories"
 import Loader from "./Loader"
+import Header from './Header'
 
 import { getRepos } from "./../api"
 
@@ -14,6 +15,7 @@ class Organization extends Component {
       repos: [],
       fetching: false
     }
+    this.fullRepos = []
   }
 
   componentDidMount() {
@@ -22,6 +24,7 @@ class Organization extends Component {
     }, () => {
       getRepos(user)
         .then(data => {
+          this.fullRepos = data
           this.setState({
             repos: data,
             fetching: false
@@ -30,13 +33,17 @@ class Organization extends Component {
     })
   }
 
+  _filterByName = (filter) => {
+    setTimeout(() => {
+      this.setState({
+        repos: this.fullRepos.filter((repo) => repo.name.indexOf(filter) !== -1)
+      })
+    }, 200)
+  }
+
   render() {
     const component = [
-      <nav className = { "panel" } key = { "org-navbar" }>
-        <p className = { "panel-heading" }>
-          { user }
-        </p>
-      </nav>
+      <Header filterFunc = { this._filterByName } user = { user }/>
     ]
     return(
       this.state.fetching ?

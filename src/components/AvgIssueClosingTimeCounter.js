@@ -4,8 +4,8 @@ import prettyMs from "pretty-ms"
 import Loader from "./Loader"
 
 const AvgIssueClosingTimeCounter = ({ avgIssueClosingTime, fetching }) =>
-  <div style = {{ textAlign: 'center' }}>
-    <span style = {{ fontSize: 'large', textAlign: 'center' }}>
+  <li style = {{ textAlign: 'center' }}>
+    <span style = {{ fontSize: 'medium', textAlign: 'center' }}>
       Avg Issue Closing Time:
       {
         fetching ?
@@ -15,6 +15,6 @@ const AvgIssueClosingTimeCounter = ({ avgIssueClosingTime, fetching }) =>
             prettyMs(Math.round(avgIssueClosingTime), { "verbose": true })}`
       }
     </span>
-  </div>
+  </li>
 
 export default AvgIssueClosingTimeCounter

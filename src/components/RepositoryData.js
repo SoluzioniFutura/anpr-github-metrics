@@ -22,7 +22,6 @@ class RepositoryData extends Component {
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.isActive && !(this.state.avgIssueClosingTime && this.state.issuesStatusRatioOverTime)) {
-
       this.setState({
         fetchingAvgIssueClosingTime: true,
         fetchingIssuesStatusRatioOverTime: true
@@ -57,10 +56,12 @@ class RepositoryData extends Component {
   render() {
     return(
       <div style={{"display": this.props.isActive ? "block" : "none", padding: '10px' }} >
-        <AvgIssueClosingTimeCounter
-          avgIssueClosingTime = { this.state.avgIssueClosingTime }
-          fetching = { this.state.fetchingAvgIssueClosingTime }
-        />
+        <ul>
+          <AvgIssueClosingTimeCounter
+            avgIssueClosingTime = { this.state.avgIssueClosingTime }
+            fetching = { this.state.fetchingAvgIssueClosingTime }
+          />
+        </ul>
         <IssuesStatusRatioOverTimeGraph
           issuesStatusRatioOverTime = { this.state.issuesStatusRatioOverTime }
           fetching = { this.state.fetchingIssuesStatusRatioOverTime }

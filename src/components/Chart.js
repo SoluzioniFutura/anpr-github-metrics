@@ -1,5 +1,5 @@
 import React from 'react'
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts'
+import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts'
 
 const CustomTooltip = (props) => {
   const { openIssues, closedIssues, totalIssues, name } = props.payload[0] ? props.payload[0].payload : {}
@@ -16,15 +16,14 @@ const CustomTooltip = (props) => {
 
 const Chart = ({ data }) => (
   <ResponsiveContainer width = { '100%' } height={500}>
-    <BarChart width={ '80%' } height = { 300 } data = { data }>
+    <AreaChart width={ '80%' } height = { 300 } data = { data }>
       <XAxis dataKey = { 'name' } />
-      <YAxis />
+      <YAxis domain = { [0, 100] } />
       <CartesianGrid strokeDasharray="3 3" />
       <Tooltip content={ <CustomTooltip/> }/>
       <Legend align = { 'right' } layout = { 'vertical' } verticalAlign = { 'middle' } margin = {{ left: '5%' }}/>
-      <Bar name = { 'Open Issues Percentage' } dataKey = { 'openIssuesPercentage' } stackId="a" fill="#82ca9d" />
-      <Bar name = { 'Closed Issues Percentage' } dataKey = { 'closedIssuesPercentage' } stackId="a" fill="#8884d8" />
-    </BarChart>
+      <Area name = { 'Open Issues Percentage' } type='monotone' dataKey='openIssuesPercentage' stroke='#8884d8' fill='#8884d8' />
+    </AreaChart>
   </ResponsiveContainer>
 )
 
