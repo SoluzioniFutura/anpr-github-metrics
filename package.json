@@ -1,6 +1,7 @@
 {
   "name": "anpr-github-metrics",
   "version": "0.1.0",
+  "homepage": "https://soluzionifutura.github.io/anpr-github-metrics/",
   "private": true,
   "devDependencies": {
     "eslint": "^4.8.0",
