@@ -7,7 +7,9 @@ import List from "./List"
 import {
   getIssues,
   getAvgIssueClosingTime,
-  getIssuesStatusRatioOverTime
+  getIssuesStatusRatioOverTime,
+  getNoLabelIssues,
+  getNoCommentsClosedIssues
 } from "./../api"
 
 class RepositoryData extends Component {
@@ -17,7 +19,9 @@ class RepositoryData extends Component {
       "avgIssueClosingTime": null,
       "fetchingAvgIssueClosingTime": false,
       "issuesStatusRatioOverTime": [],
-      "fetchingIssuesStatusRatioOverTime": false
+      "fetchingIssuesStatusRatioOverTime": false,
+      "noLabelIssues": [],
+      "noCommentsClosedIssues": []
     }
   }
 
@@ -30,6 +34,7 @@ class RepositoryData extends Component {
 
       getIssues(this.props.user, this.props.name)
         .then(issues => {
+
           getAvgIssueClosingTime(issues)
             .then(avgIssueClosingTime => {
               this.setState({
@@ -39,6 +44,7 @@ class RepositoryData extends Component {
                 "fetchingAvgIssueClosingTime": false
               })
             })
+
           getIssuesStatusRatioOverTime(issues)
             .then(issuesStatusRatioOverTime => {
               this.setState({
@@ -50,6 +56,17 @@ class RepositoryData extends Component {
                 "fetchingIssuesStatusRatioOverTime": false
               })
             })
+
+          getNoLabelIssues(issues)
+            .then(noLabelIssues => {
+              this.setState({ noLabelIssues })
+            })
+
+          getNoCommentsClosedIssues(issues)
+            .then(noCommentsClosedIssues => {
+              this.setState({ noCommentsClosedIssues })
+            })
+
         })
     }
   }
