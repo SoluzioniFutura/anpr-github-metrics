@@ -87,6 +87,9 @@ class RepositoryData extends Component {
     return(
       <div style={{"display": this.props.isActive ? "block" : "none", "padding": "10px" }} >
         <ul>
+          <a className = { "button is-primary is-outlined is-fullwidth" } style = {{ "width": "80%", "margin": "0 10%" }} href = { this.props.repo.html_url } target = { "_blank" }>
+            Go to repo
+          </a>
           <AvgIssueClosingTimeCounter
             avgIssueClosingTime = { this.state.avgIssueClosingTime }
             fetching = { this.state.fetchingAvgIssueClosingTime }

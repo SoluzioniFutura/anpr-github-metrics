@@ -19,10 +19,16 @@ class List extends React.Component {
   render() {
     return (
       <div style = {{ "display": "flex", "flexDirection": "column", "justifyContent": "center", "alignItems": "center" }}>
-        <button className = { "button is-primary is-outlined is-fullwidth" } style = {{ "width": "80%", "cursor": this.props.fetching ? "default" : "pointer" }} onClick={ this.props.fetching ? null : this._handleClick }>
-          { this.props.fetching ?
-            "Loading..." :
-            this.props.title
+        <button
+          className = { "button is-primary is-outlined is-fullwidth" }
+          style = {{ "width": "80%", "cursor": ( this.props.issues.length === 0 || this.props.fetching) ? "default" : "pointer" }}
+          onClick={ this.props.fetching ? null : this._handleClick }
+          disabled = { this.props.issues.length === 0 ? "disabled" : null }
+        >
+          {
+            this.props.fetching ?
+              "Loading..." :
+              `${this.props.title} (${this.props.issues.length === 0 ? "No issues found" : this.props.issues.length})`
           }
         </button>
         {

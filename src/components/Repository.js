@@ -24,13 +24,12 @@ class Repository extends Component {
       <div>
         <a key = { name } className = { `panel-block ${this.state.isActive ? "is-active" : ""}` } onClick = { this.handleClick }>
           <span className = { "panel-icon" }>
-            <a href = { repo.html_url } target = { "_blank" }>
-              <i className = { "fa fa-external-link" } />
-            </a>
+            <i className = { "fa fa-book" }/>
           </span>
           <span onClick = { null }>{ repo.name } (Open issues: { repo.open_issues_count })</span>
         </a>
       <RepositoryData
+        repo = { repo }
         user = { user }
         name = { repo.name }
         isActive = { this.state.isActive }
