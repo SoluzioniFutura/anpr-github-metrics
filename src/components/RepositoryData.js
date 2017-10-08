@@ -60,11 +60,13 @@ class RepositoryData extends Component {
           getNoLabelIssues(issues)
             .then(noLabelIssues => {
               this.setState({ noLabelIssues })
+              console.log('noLabel', noLabelIssues)
             })
 
           getNoCommentsClosedIssues(issues)
             .then(noCommentsClosedIssues => {
               this.setState({ noCommentsClosedIssues })
+              console.log('noComments', noCommentsClosedIssues)
             })
 
         })
@@ -79,8 +81,8 @@ class RepositoryData extends Component {
             avgIssueClosingTime = { this.state.avgIssueClosingTime }
             fetching = { this.state.fetchingAvgIssueClosingTime }
           />
-          <List issues = { [] } title = { "No Comments Closed Issues" } />
-          <List issues = { [] } title = { "No Label Issues" } />
+          <List issues = { this.state.noCommentsClosedIssues } title = { "No Comments Closed Issues" } />
+          <List issues = { this.state.noLabelIssues } title = { "No Label Issues" } />
         </ul>
         <IssuesStatusRatioOverTimeGraph
           issuesStatusRatioOverTime = { this.state.issuesStatusRatioOverTime }
