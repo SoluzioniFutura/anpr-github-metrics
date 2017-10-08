@@ -22,12 +22,12 @@ class Repository extends Component {
     return(
       <div>
       <a key = { this.props.name } onClick = { this.handleClick } className = { 'panel-block is-active columns is-mobile' }>
-        <span className = { 'column is-4' }>{ this.props.data.name }</span>
-        <span className = { 'column is-offset-4' } style = {{ float: 'right' }}>Open issues: { this.props.data.open_issues_count }</span>
+        <span className = { 'column is-4' }>{ this.props.repo.name }</span>
+        <span className = { 'column is-offset-4' } style = {{ float: 'right' }}>Open issues: { this.props.repo.open_issues_count }</span>
       </a>
       <RepositoryData
         user = { this.props.user }
-        name = { this.props.data.name }
+        name = { this.props.repo.name }
         isActive = { this.state.isActive }
       />
       </div>

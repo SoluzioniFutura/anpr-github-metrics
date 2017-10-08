@@ -7,8 +7,8 @@ import { user } from "./../config"
 
 const App = () =>
   [
-    <Organization key={"organization"} name={user} />,
-    <Test key={"test"} />
+    <Organization key={"app-organization"} name={user} />,
+    <Test key={"app-test"} />
   ]
 
 export default App

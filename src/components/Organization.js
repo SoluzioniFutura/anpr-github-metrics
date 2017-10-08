@@ -15,7 +15,7 @@ class Organization extends Component {
 
   render() {
     const component = [
-      <nav className = { "panel" } key = { "navbar" }>
+      <nav className = { "panel" } key = { "org-navbar" }>
         <p className = { "panel-heading" }>
           { user }
         </p>
@@ -25,11 +25,11 @@ class Organization extends Component {
       this.state && this.state.repos ?
       component.concat([
         <Repositories
-          key={"repos"}
+          key={"org-repos"}
           repos={this.state.repos}
           user={user}
         />]) :
-      component.concat([<Loader key="loader" />])
+      component.concat([<Loader key="org-loader" />])
     )
   }
 }

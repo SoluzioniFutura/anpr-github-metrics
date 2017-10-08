@@ -8,9 +8,9 @@ const Repositories = props => [
   <ul key={ "repos-ul" }>
     {
       props.repos.map(repo =>
-        <li key={ repo.name }>
+        <li key={ `repos-${repo.name}` }>
           <Repository
-            data={ repo }
+            repo={ repo }
             user={ props.user }
           />
         </li>
