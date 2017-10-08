@@ -18,7 +18,7 @@ class List extends React.Component {
 
   render() {
     return (
-      <div style = {{ "display": "flex", "flexDirection": "column", "justifyContent": "center", "alignItems": "center" }}>
+      <div style = {{ "display": "flex", "flexDirection": "column", "justifyContent": "center", "alignItems": "center", "marginTop": "1%" }}>
         <button
           className = { "button is-primary is-outlined is-fullwidth" }
           style = {{ "width": "80%", "cursor": ( this.props.issues.length === 0 || this.props.fetching) ? "default" : "pointer" }}
