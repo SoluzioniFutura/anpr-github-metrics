@@ -2,7 +2,7 @@ import React, { Component } from "react"
 
 import AvgIssueClosingTimeCounter from "./AvgIssueClosingTimeCounter"
 import IssuesStatusRatioOverTimeGraph from "./IssuesStatusRatioOverTimeGraph"
-import List from './List'
+import List from "./List"
 
 import {
   getIssues,
@@ -24,8 +24,8 @@ class RepositoryData extends Component {
   componentWillReceiveProps(nextProps) {
     if (nextProps.isActive && !(this.state.avgIssueClosingTime && this.state.issuesStatusRatioOverTime)) {
       this.setState({
-        fetchingAvgIssueClosingTime: true,
-        fetchingIssuesStatusRatioOverTime: true
+        "fetchingAvgIssueClosingTime": true,
+        "fetchingIssuesStatusRatioOverTime": true
       })
 
       getIssues(this.props.user, this.props.name)
@@ -62,14 +62,14 @@ class RepositoryData extends Component {
             avgIssueClosingTime = { this.state.avgIssueClosingTime }
             fetching = { this.state.fetchingAvgIssueClosingTime }
           />
+          <List issues = { [] } title = { "No Comments Closed Issues" } />
+          <List issues = { [] } title = { "No Label Issues" } />
         </ul>
         <IssuesStatusRatioOverTimeGraph
           issuesStatusRatioOverTime = { this.state.issuesStatusRatioOverTime }
           fetching = { this.state.fetchingIssuesStatusRatioOverTime }
           style = {{ "padding": "10px"}}
         />
-        <List issues = { [] } title = { 'No Comments Closed Issues' }/>
-        <List issues = { [] } title = { 'No Label Issues' }/>
       </div>
     )
   }

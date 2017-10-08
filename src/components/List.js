@@ -1,11 +1,11 @@
-import React from 'react'
-import PropTypes from 'prop-types'
+import React from "react"
+import PropTypes from "prop-types"
 
 class List extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      isActive: false
+      "isActive": false
     }
     this._handleClick = (e) => {
       e.preventDefault()
@@ -18,13 +18,13 @@ class List extends React.Component {
   render() {
     return (
       <div>
-        <p onClick = { this._handleClick } className = { 'panel-heading' }>
+        <button className = { "button is-primary is-outlined is-fullwidth" }>
           { this.props.title }
-        </p>
+        </button>
         {
           this.state.isActive ?
             this.props.issues.map((issue) =>
-              <a className = { 'panel-block' }>
+              <a className = { "panel-block" }>
                 { issue }
               </a>
             ) :
@@ -36,8 +36,8 @@ class List extends React.Component {
 }
 
 List.propTypes = {
-  title: PropTypes.string.isRequired,
-  issues: PropTypes.arrayOf(PropTypes.object).isRequired
+  "title": PropTypes.string.isRequired,
+  "issues": PropTypes.arrayOf(PropTypes.object).isRequired
 }
 
 export default List
