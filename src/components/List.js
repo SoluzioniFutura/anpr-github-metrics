@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-class NoCommentsClosedIssuesList extends React.Component {
+class List extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -19,15 +19,15 @@ class NoCommentsClosedIssuesList extends React.Component {
     return (
       <div>
         <p onClick = { this._handleClick } className = { 'panel-heading' }>
-            No Comments Closed Issues
+          { this.props.title }
         </p>
         {
           this.state.isActive ?
-          this.props.issues.map((issue) =>
-            <a className = { 'panel-block' }>
-              { issue }
-            </a>
-          ) :
+            this.props.issues.map((issue) =>
+              <a className = { 'panel-block' }>
+                { issue }
+              </a>
+            ) :
             null
         }
       </div>
@@ -35,8 +35,9 @@ class NoCommentsClosedIssuesList extends React.Component {
   }
 }
 
-NoCommentsClosedIssuesList.propTypes = {
+List.propTypes = {
+  title: PropTypes.string.isRequired,
   issues: PropTypes.arrayOf(PropTypes.object).isRequired
 }
 
-export default NoCommentsClosedIssuesList
+export default List
