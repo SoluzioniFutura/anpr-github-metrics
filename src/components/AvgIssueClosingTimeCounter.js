@@ -8,7 +8,7 @@ const AvgIssueClosingTimeCounter = props =>
     <span style = {{ fontSize: 'large', textAlign: 'center' }}>
       Avg Issue Closing Time:
       {
-        props.avgIssueClosingTime !== "loading" ?
+        props.avgIssueClosingTime ?
           typeof props.avgIssueClosingTime !== "number" || Number.isNaN(props.avgIssueClosingTime) ?
             "Data unavailable: too few issues" :
             prettyMs(Math.round(props.avgIssueClosingTime), { "verbose": true })

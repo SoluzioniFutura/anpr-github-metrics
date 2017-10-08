@@ -8,9 +8,25 @@ import Loader from "./Loader"
 import { getRepos } from "./../api"
 
 class Organization extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      repos: [],
+      fetching: false
+    }
+  }
+
   componentDidMount() {
+    this.setState({
+      fetching: true
+    })
     getRepos(user)
-      .then(data => { this.setState({"repos": data}) })
+      .then(data => {
+        this.setState({
+          repos: data,
+          fetching: false
+        })
+      })
   }
 
   render() {
@@ -22,7 +38,7 @@ class Organization extends Component {
       </nav>
     ]
     return(
-      this.state && this.state.repos ?
+      this.state.fetching ?
       component.concat([
         <Repositories
           key={"repos"}

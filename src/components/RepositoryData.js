@@ -10,9 +10,16 @@ import {
 } from "./../api"
 
 class RepositoryData extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      avgIssueClosingTime: null,
+      issuesStatusRatioOverTime: null
+    }
+  }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.isActive && !this.state) {
+    if (nextProps.isActive && !(this.state.avgIssueClosingTime && this.state.issuesStatusRatioOverTime)) {
 
       getIssues(this.props.user, this.props.name)
         .then(issues => {
@@ -45,13 +52,13 @@ class RepositoryData extends Component {
     return(
       <div style={{"display": this.props.isActive ? "block" : "none" }} >
         <AvgIssueClosingTimeCounter
-          avgIssueClosingTime={this.state && this.state.avgIssueClosingTime ? this.state.avgIssueClosingTime : "loading"}
+          avgIssueClosingTime = { this.state.avgIssueClosingTime }
         />
         <IssuesStatusRatioOverTimeGraph
-          issuesStatusRatioOverTime={
-            this.state && this.state.issuesStatusRatioOverTime ?
+          issuesStatusRatioOverTime = {
+            this.state.issuesStatusRatioOverTime ?
               this.state.issuesStatusRatioOverTime :
-              "loading"
+              'loading'
           }
           style = {{ padding: '10px'}}
         />
