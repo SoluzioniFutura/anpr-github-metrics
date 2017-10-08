@@ -60,13 +60,13 @@ class RepositoryData extends Component {
           getNoLabelIssues(issues)
             .then(noLabelIssues => {
               this.setState({ noLabelIssues })
-              console.log('noLabel', noLabelIssues)
+              console.log("noLabel", noLabelIssues)
             })
 
           getNoCommentsClosedIssues(issues)
             .then(noCommentsClosedIssues => {
               this.setState({ noCommentsClosedIssues })
-              console.log('noComments', noCommentsClosedIssues)
+              console.log("noComments", noCommentsClosedIssues)
             })
 
         })

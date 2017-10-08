@@ -8,13 +8,13 @@ class Repository extends Component {
     super(props)
     this.handleClick = this.handleClick.bind(this)
     this.state = {
-      isActive: false
+      "isActive": false
     }
   }
 
   handleClick() {
     this.setState({
-      isActive: !this.state.isActive
+      "isActive": !this.state.isActive
     })
   }
 
@@ -24,9 +24,9 @@ class Repository extends Component {
 
     return(
       <div>
-      <a key = { name } onClick = { this.handleClick } className = { `panel-block ${this.state.isActive ? 'is-active' : ''}` }>
-        <span className = { 'panel-icon' }>
-          <i className = { 'fa fa-book' } />
+      <a key = { name } onClick = { this.handleClick } className = { `panel-block ${this.state.isActive ? "is-active" : ""}` }>
+        <span className = { "panel-icon" }>
+          <i className = { "fa fa-book" } />
         </span>
         { repo.name } (Open issues: { repo.open_issues_count })
       </a>

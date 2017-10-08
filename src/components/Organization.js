@@ -4,7 +4,7 @@ import { user } from "./../config"
 
 import Repositories from "./Repositories"
 import Loader from "./Loader"
-import Header from './Header'
+import Header from "./Header"
 
 import { getRepos } from "./../api"
 
@@ -29,7 +29,7 @@ class Organization extends Component {
 
   componentDidMount() {
     this.setState({
-      fetching: true
+      "fetching": true
     }, () => {
       getRepos(user)
         .then(data => {

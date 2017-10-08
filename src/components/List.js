@@ -25,11 +25,11 @@ class List extends React.Component {
           this.state.isActive ?
             (
               this.props.issues.length === 0 ?
-                <a className = { "panel-block" } style = {{ width: "80%", fontSize: "small" }}>
+                <a className = { "panel-block" } style = {{ "width": "80%", "fontSize": "small" }}>
                   No Issues Found
                 </a> :
                 this.props.issues.map((issue) =>
-                  <a href = { issue["html_url"] } target = { '_blank' }  className = { "panel-block" } style = {{ width: "80%", fontSize: "small" }}>
+                  <a href = { issue["html_url"] } target = { "_blank" }  className = { "panel-block" } style = {{ "width": "80%", "fontSize": "small" }}>
                     { issue["html_url"] }
                   </a>
                 )

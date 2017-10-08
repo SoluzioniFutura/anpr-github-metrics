@@ -1,5 +1,5 @@
 import React, { Component } from "react"
-import * as network from "../api";
+import * as network from "../api"
 
 import { user, repo } from "./../config"
 
