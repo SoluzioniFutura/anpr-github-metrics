@@ -87,14 +87,15 @@ class RepositoryData extends Component {
     return(
       <div style={{"display": this.props.isActive ? "block" : "none", "padding": "10px" }} >
         <ul>
+          <li style = {{ "textAlign": "center" }}>
           <a
-            className = { "button is-primary is-outlined is-fullwidth" }
-            style = {{ "width": "80%", "margin": "0 10%" }}
+            style = {{ "width": "80%", "margin": "0 10%", "textDecoration": "underline" }}
             href = { this.props.repo.html_url }
             target = { "_blank" }
           >
             Go to repo
           </a>
+          </li>
           <List fetching = { this.state.fetchingNoCommentsClosedIssues } issues = { this.state.noCommentsClosedIssues } title = { "Closed issues with no comments" } />
           <List fetching = { this.state.fetchingNoLabelIssues } issues = { this.state.noLabelIssues } title = { "Issues with no label" } />
           <AvgIssueClosingTimeCounter
@@ -105,7 +106,7 @@ class RepositoryData extends Component {
         <IssuesStatusRatioOverTimeGraph
           issuesStatusRatioOverTime = { this.state.issuesStatusRatioOverTime }
           fetching = { this.state.fetchingIssuesStatusRatioOverTime }
-          style = {{ "padding": "10px"}}
+          style = {{ "padding": "5%" }}
         />
       </div>
     )
