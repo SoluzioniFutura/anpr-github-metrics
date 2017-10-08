@@ -1,16 +1,14 @@
-Implementare un servizio che analizzi le issue github e produca varie metriche, possibilmente con una visualizzazione attraente. Le metriche devono contenere almeno i seguenti campi:
+This application leverages the GitHub API to query a User or Organization for the following metrics for each repository:
 
-* Tempo di prima risposta (medio e sua distribuzione)
-* Tempo di chiusura di un ticket (medio e sua distribuzione)
-* Numero di ticket aperti
-* Grafico di numero di ticket aperti/chiusi in funzione del tempo
+* Number of open issues
+* Average time for an issue to be closed
+* Closed issues with no comments
+* Issues with no label
+* Graph with the number of open, closed and total issues for each day during the last month (tracking period and granularity can be adjusted)
 
-Inoltre, vorremmo rendere possibile eseguire ulteriori query. Il servizio è pensato come applicazione web e possa esporre delle "viste" predefinite ed altre che siano customizzabili dagli utenti.
-Esempio di query:
+Organization or User can be specified via "src/config.json";
+Credentials for GitHub authentication can be specified via "src/credentials.json"
 
-* Issue non commentate (da)
-* Issue aperte NON nelle label...
-* Issue chiuse senza commento
-
-http://github-tools.github.io/github/docs/3.1.0/
+The application, linked to the "[italia](https://github.com/italia)" GitHub Organization, can be viewed at the following address:
+https://soluzionifutura.github.io/anpr-github-metrics/
 
