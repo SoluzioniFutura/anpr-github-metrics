@@ -4,8 +4,9 @@ import prettyMs from "pretty-ms"
 import Loader from "./Loader"
 
 const AvgIssueClosingTimeCounter = props =>
-    <span>
-      {"Avg Issue Closing Time: "}
+  <div style = {{ textAlign: 'center' }}>
+    <span style = {{ fontSize: 'large', textAlign: 'center' }}>
+      Avg Issue Closing Time:
       {
         props.avgIssueClosingTime !== "loading" ?
           typeof props.avgIssueClosingTime !== "number" || Number.isNaN(props.avgIssueClosingTime) ?
@@ -15,5 +16,6 @@ const AvgIssueClosingTimeCounter = props =>
           <Loader />
       }
     </span>
+  </div>
 
 export default AvgIssueClosingTimeCounter

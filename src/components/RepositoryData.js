@@ -43,7 +43,7 @@ class RepositoryData extends Component {
 
   render() {
     return(
-      <div style={{"display": this.props.isActive ? "block" : "none" }}>
+      <div style={{"display": this.props.isActive ? "block" : "none" }} >
         <AvgIssueClosingTimeCounter
           avgIssueClosingTime={this.state && this.state.avgIssueClosingTime ? this.state.avgIssueClosingTime : "loading"}
         />
@@ -53,6 +53,7 @@ class RepositoryData extends Component {
               this.state.issuesStatusRatioOverTime :
               "loading"
           }
+          style = {{ padding: '10px'}}
         />
       </div>
     )
