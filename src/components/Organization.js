@@ -15,8 +15,8 @@ class Organization extends Component {
 
   render() {
     const component = [
-      <nav className = { 'panel' } key = { 'navbar' }>
-        <p className = { 'panel-heading' }>
+      <nav className = { "panel" } key = { "navbar" }>
+        <p className = { "panel-heading" }>
           { user }
         </p>
       </nav>

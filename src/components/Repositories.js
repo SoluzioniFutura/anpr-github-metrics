@@ -4,8 +4,8 @@ import Repository from "./Repository"
 import Filter from './Filter'
 
 const Repositories = props => [
-  <Filter style = {{ margin: '10px' }}/>,
-  <ul>
+  <Filter key={ "repos-filter" } style = {{ margin: '10px' }}/>,
+  <ul key={ "repos-ul" }>
     {
       props.repos.map(repo =>
         <li key={ repo.name }>
