@@ -14520,7 +14520,7 @@ if (true) {
 /* 129 */
 /***/ (function(module, exports) {
 
-module.exports = {"user":"italia","repo":"anpr"}
+module.exports = {"user":"italia"}
 
 /***/ }),
 /* 130 */
@@ -46254,4 +46254,4 @@ registerValidSW(swUrl);}}).catch(function(){console.log("No internet connection 
 
 /***/ })
 /******/ ]);
-//# sourceMappingURL=main.59a88242.js.map
+//# sourceMappingURL=main.b011fb5c.js.map
