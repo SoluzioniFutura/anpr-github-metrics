@@ -1,4 +1,4 @@
-#anpr-github-metrics
+# anpr-github-metrics
 
 This application leverages the GitHub API to query a User or Organization for the following metrics for each repository:
 
