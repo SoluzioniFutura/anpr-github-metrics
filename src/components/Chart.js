@@ -4,27 +4,13 @@ import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, Legend, Responsi
 const CustomTooltip = (props) => {
   const { openIssues, closedIssues, totalIssues, name } = props.payload[0] ? props.payload[0].payload : {}
   return (
-    <div className="custom-tooltip" style = {{ "background": "#ffffff" }}>
-      <p className="label">{ name }</p>
-      <p className="label">Open Issues: { openIssues }</p>
-      <p className="label">Closed Issues: { closedIssues }</p>
-      <p className="label">Total Issues: { totalIssues }</p>
-    </div>
+    <div className={"custom-tooltip"} style = {{ "background": "#ffffff" }}>{"\n      "}<p className={"label"}>{ name }</p>{"\n      "}<p className={"label"}>{"Open Issues: "}{ openIssues }</p>{"\n      "}<p className={"label"}>{"Closed Issues: "}{ closedIssues }</p>{"\n      "}<p className={"label"}>{"Total Issues: "}{ totalIssues }</p>{"\n    "}</div>
   )
 }
 
 
 const Chart = ({ data }) => (
-  <ResponsiveContainer width = { "100%" } height={500}>
-    <AreaChart width={ "80%" } height = { 300 } data = { data }>
-      <XAxis dataKey = { "name" } />
-      <YAxis domain = { [0, 100] } />
-      <CartesianGrid strokeDasharray="3 3" />
-      <Tooltip content={ <CustomTooltip/> }/>
-      <Legend align = { "right" } layout = { "vertical" } verticalAlign = { "middle" } margin = {{ "left": "5%" }}/>
-      <Area name = { "Open Issues Percentage" } type="monotone" dataKey="openIssuesPercentage" stroke="#8884d8" fill="#8884d8" />
-    </AreaChart>
-  </ResponsiveContainer>
+  <ResponsiveContainer width = { "100%" } height={500}>{"\n    "}<AreaChart width={ "80%" } height = { 300 } data = { data }>{"\n      "}<XAxis dataKey = { "name" } />{"\n      "}<YAxis domain = { [0, 100] } />{"\n      "}<CartesianGrid strokeDasharray={"3 3"} />{"\n      "}<Tooltip content={ <CustomTooltip/> }/>{"\n      "}<Legend align = { "right" } layout = { "vertical" } verticalAlign = { "middle" } margin = {{ "left": "5%" }}/>{"\n      "}<Area name = { "Open Issues Percentage" } type={"monotone"} dataKey={"openIssuesPercentage"} stroke={"#8884d8"} fill={"#8884d8"} />{"\n    "}</AreaChart>{"\n  "}</ResponsiveContainer>
 )
 
 export default Chart

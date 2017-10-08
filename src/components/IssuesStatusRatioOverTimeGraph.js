@@ -4,8 +4,7 @@ import Loader from "./Loader"
 import Chart from "./Chart"
 
 const IssuesStatusRatioOverTimeGraph = ({ issuesStatusRatioOverTime, fetching }) =>
-  <p style = {{ "textAlign": "center" }}>
-    {
+  <p style = {{ "textAlign": "center" }}>{"\n    "}{
       fetching ?
         <Loader /> :
         <Chart data = { issuesStatusRatioOverTime.map(dataPoint => ({
@@ -16,7 +15,6 @@ const IssuesStatusRatioOverTimeGraph = ({ issuesStatusRatioOverTime, fetching })
           "closedIssuesPercentage": (dataPoint.totalIssues - dataPoint.openIssues) / dataPoint.totalIssues * 100,
           "totalIssues": dataPoint.totalIssues
         })) } />
-    }
-  </p>
+    }{"\n  "}</p>
 
 export default IssuesStatusRatioOverTimeGraph

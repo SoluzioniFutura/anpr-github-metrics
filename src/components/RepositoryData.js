@@ -85,21 +85,14 @@ class RepositoryData extends Component {
 
   render() {
     return(
-      <div style={{"display": this.props.isActive ? "block" : "none", "padding": "10px" }} >
-        <ul>
-          <AvgIssueClosingTimeCounter
+      <div style={{"display": this.props.isActive ? "block" : "none", "padding": "10px" }} >{"\n        "}<ul>{"\n          "}<AvgIssueClosingTimeCounter
             avgIssueClosingTime = { this.state.avgIssueClosingTime }
             fetching = { this.state.fetchingAvgIssueClosingTime }
-          />
-          <List fetching = { this.state.fetchingNoCommentsClosedIssues } issues = { this.state.noCommentsClosedIssues } title = { "Closed issues with no comments" } />
-          <List fetching = { this.state.fetchingNoLabelIssues } issues = { this.state.noLabelIssues } title = { "Issues with no label" } />
-        </ul>
-        <IssuesStatusRatioOverTimeGraph
+          />{"\n          "}<List fetching = { this.state.fetchingNoCommentsClosedIssues } issues = { this.state.noCommentsClosedIssues } title = { "Closed issues with no comments" } />{"\n          "}<List fetching = { this.state.fetchingNoLabelIssues } issues = { this.state.noLabelIssues } title = { "Issues with no label" } />{"\n        "}</ul>{"\n        "}<IssuesStatusRatioOverTimeGraph
           issuesStatusRatioOverTime = { this.state.issuesStatusRatioOverTime }
           fetching = { this.state.fetchingIssuesStatusRatioOverTime }
           style = {{ "padding": "10px"}}
-        />
-      </div>
+        />{"\n      "}</div>
     )
   }
 }

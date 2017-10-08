@@ -48,7 +48,7 @@ class Organization extends Component {
     ]
     return(
       this.state.fetching ?
-        component.concat([<Loader key="org-loader" />]) :
+        component.concat([<Loader key={"org-loader"} />]) :
         component.concat([
           <Repositories
             key={"org-repos"}

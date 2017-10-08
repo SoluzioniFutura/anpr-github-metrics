@@ -18,29 +18,20 @@ class List extends React.Component {
 
   render() {
     return (
-      <div style = {{ "display": "flex", "flexDirection": "column", "justifyContent": "center", "alignItems": "center" }}>
-        <button className = { "button is-primary is-outlined is-fullwidth" } style = {{ "width": "80%", "cursor": this.props.fetching ? "default" : "pointer" }} onClick={ this.props.fetching ? null : this._handleClick }>
-          { this.props.fetching ?
+      <div style = {{ "display": "flex", "flexDirection": "column", "justifyContent": "center", "alignItems": "center" }}>{"\n        "}<button className = { "button is-primary is-outlined is-fullwidth" } style = {{ "width": "80%", "cursor": this.props.fetching ? "default" : "pointer" }} onClick={ this.props.fetching ? null : this._handleClick }>{"\n          "}{ this.props.fetching ?
             "Loading..." :
             this.props.title
-          }
-        </button>
-        {
+          }{"\n        "}</button>{"\n        "}{
           this.state.isActive ?
             (
               this.props.issues.length === 0 ?
-                <a className = { "panel-block" } style = {{ "width": "80%", "fontSize": "small" }}>
-                  No Issues Found
-                </a> :
+                <a className = { "panel-block" } style = {{ "width": "80%", "fontSize": "small" }}>{"\n                  No Issues Found\n                "}</a> :
                 this.props.issues.map((issue) =>
-                    <a href = { issue["html_url"] } target = { "_blank" }  className = { "panel-block" } style = {{ "width": "80%", "fontSize": "small" }}>
-                      { issue["html_url"] }
-                    </a>
+                    <a href = { issue["html_url"] } target = { "_blank" }  className = { "panel-block" } style = {{ "width": "80%", "fontSize": "small" }}>{"\n                      "}{ issue["html_url"] }{"\n                    "}</a>
                 )
             ) :
             null
-        }
-      </div>
+        }{"\n      "}</div>
     )
   }
 }
