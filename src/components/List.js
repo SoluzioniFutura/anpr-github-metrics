@@ -9,24 +9,30 @@ class List extends React.Component {
     }
     this._handleClick = (e) => {
       e.preventDefault()
-      this.setState((prevState) => {
-        isActive: !prevState.isActive
-      })
+      this.setState((prevState) => ({
+        "isActive": !prevState.isActive
+      }))
     }
   }
 
   render() {
     return (
       <div style = {{ "display": "flex", "flexDirection": "column", "justifyContent": "center", "alignItems": "center" }}>
-        <button className = { "button is-primary is-outlined is-fullwidth" } style = {{ "width": "30%" }} >
+        <button className = { "button is-primary is-outlined is-fullwidth" } style = {{ "width": "80%" }} onClick={ this._handleClick }>
           { this.props.title }
         </button>
         {
           this.state.isActive ?
-            this.props.issues.map((issue) =>
-              <a className = { "panel-block" }>
-                { issue }
-              </a>
+            (
+              this.props.issues.length === 0 ?
+                <a className = { "panel-block" } style = {{ width: "80%", fontSize: "small" }}>
+                  No Issues Found
+                </a> :
+                this.props.issues.map((issue) =>
+                  <a href = { issue["html_url"] } target = { '_blank' }  className = { "panel-block" } style = {{ width: "80%", fontSize: "small" }}>
+                    { issue["html_url"] }
+                  </a>
+                )
             ) :
             null
         }
