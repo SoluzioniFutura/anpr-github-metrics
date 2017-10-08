@@ -12,10 +12,19 @@ class Organization extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      repos: [],
-      fetching: false
+      "repos": [],
+      "fetching": false
     }
     this.fullRepos = []
+    this._filterByName = this._filterByName.bind(this)
+  }
+
+  _filterByName(filter) {
+    setTimeout(() => {
+      this.setState({
+        "repos": this.fullRepos.filter((repo) => repo.name.indexOf(filter) !== -1)
+      })
+    }, 200)
   }
 
   componentDidMount() {
@@ -26,19 +35,11 @@ class Organization extends Component {
         .then(data => {
           this.fullRepos = data
           this.setState({
-            repos: data,
-            fetching: false
+            "repos": data,
+            "fetching": false
           })
         })
     })
-  }
-
-  _filterByName = (filter) => {
-    setTimeout(() => {
-      this.setState({
-        repos: this.fullRepos.filter((repo) => repo.name.indexOf(filter) !== -1)
-      })
-    }, 200)
   }
 
   render() {
