@@ -2,7 +2,7 @@ import React, { Component } from "react"
 
 import AvgIssueClosingTimeCounter from "./AvgIssueClosingTimeCounter"
 import IssuesStatusRatioOverTimeGraph from "./IssuesStatusRatioOverTimeGraph"
-import List from './List'
+import List from "./List"
 
 import {
   getIssues,
@@ -68,8 +68,8 @@ class RepositoryData extends Component {
           fetching = { this.state.fetchingIssuesStatusRatioOverTime }
           style = {{ "padding": "10px"}}
         />
-        <List issues = { [] } title = { 'No Comments Closed Issues' }/>
-        <List issues = { [] } title = { 'No Label Issues' }/>
+        <List issues = { [] } title = { "No Comments Closed Issues" }/>
+        <List issues = { [] } title = { "No Label Issues" }/>
       </div>
     )
   }
