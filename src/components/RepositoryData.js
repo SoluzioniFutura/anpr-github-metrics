@@ -21,7 +21,9 @@ class RepositoryData extends Component {
       "issuesStatusRatioOverTime": [],
       "fetchingIssuesStatusRatioOverTime": false,
       "noLabelIssues": [],
-      "noCommentsClosedIssues": []
+      "noCommentsClosedIssues": [],
+      "fetchingNoLabelIssues": false,
+      "fetchingNoCommentsClosedIssues": false
     }
   }
 
@@ -29,7 +31,9 @@ class RepositoryData extends Component {
     if (nextProps.isActive && !(this.state.avgIssueClosingTime && this.state.issuesStatusRatioOverTime)) {
       this.setState({
         "fetchingAvgIssueClosingTime": true,
-        "fetchingIssuesStatusRatioOverTime": true
+        "fetchingIssuesStatusRatioOverTime": true,
+        "fetchingNoLabelIssues": true,
+        "fetchingNoCommentsClosedIssues": true
       })
 
       getIssues(this.props.user, this.props.name)
@@ -59,13 +63,19 @@ class RepositoryData extends Component {
 
           getNoLabelIssues(issues)
             .then(noLabelIssues => {
-              this.setState({ noLabelIssues })
+              this.setState({
+                noLabelIssues,
+                "fetchingNoLabelIssues": false
+              })
               console.log("noLabel", noLabelIssues)
             })
 
           getNoCommentsClosedIssues(issues)
             .then(noCommentsClosedIssues => {
-              this.setState({ noCommentsClosedIssues })
+              this.setState({
+                noCommentsClosedIssues,
+                "fetchingNoCommentsClosedIssues": false
+              })
               console.log("noComments", noCommentsClosedIssues)
             })
 
@@ -81,8 +91,8 @@ class RepositoryData extends Component {
             avgIssueClosingTime = { this.state.avgIssueClosingTime }
             fetching = { this.state.fetchingAvgIssueClosingTime }
           />
-          <List issues = { this.state.noCommentsClosedIssues } title = { "No Comments Closed Issues" } />
-          <List issues = { this.state.noLabelIssues } title = { "No Label Issues" } />
+          <List fetching = { this.state.fetchingNoCommentsClosedIssues } issues = { this.state.noCommentsClosedIssues } title = { "Closed issues with no comments" } />
+          <List fetching = { this.state.fetchingNoLabelIssues } issues = { this.state.noLabelIssues } title = { "Issues with no label" } />
         </ul>
         <IssuesStatusRatioOverTimeGraph
           issuesStatusRatioOverTime = { this.state.issuesStatusRatioOverTime }

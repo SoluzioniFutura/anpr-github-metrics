@@ -1,5 +1,6 @@
 import React from "react"
 import PropTypes from "prop-types"
+import Loader from "./Loader"
 
 class List extends React.Component {
   constructor(props) {
@@ -18,8 +19,11 @@ class List extends React.Component {
   render() {
     return (
       <div style = {{ "display": "flex", "flexDirection": "column", "justifyContent": "center", "alignItems": "center" }}>
-        <button className = { "button is-primary is-outlined is-fullwidth" } style = {{ "width": "80%" }} onClick={ this._handleClick }>
-          { this.props.title }
+        <button className = { "button is-primary is-outlined is-fullwidth" } style = {{ "width": "80%", "cursor": this.props.fetching ? "default" : "pointer" }} onClick={ this.props.fetching ? null : this._handleClick }>
+          { this.props.fetching ?
+            "Loading..." :
+            this.props.title
+          }
         </button>
         {
           this.state.isActive ?
@@ -29,9 +33,9 @@ class List extends React.Component {
                   No Issues Found
                 </a> :
                 this.props.issues.map((issue) =>
-                  <a href = { issue["html_url"] } target = { "_blank" }  className = { "panel-block" } style = {{ "width": "80%", "fontSize": "small" }}>
-                    { issue["html_url"] }
-                  </a>
+                    <a href = { issue["html_url"] } target = { "_blank" }  className = { "panel-block" } style = {{ "width": "80%", "fontSize": "small" }}>
+                      { issue["html_url"] }
+                    </a>
                 )
             ) :
             null
@@ -43,7 +47,8 @@ class List extends React.Component {
 
 List.propTypes = {
   "title": PropTypes.string.isRequired,
-  "issues": PropTypes.arrayOf(PropTypes.object).isRequired
+  "issues": PropTypes.arrayOf(PropTypes.object).isRequired,
+  "fetching": PropTypes.bool.isRequired
 }
 
 export default List

@@ -19,17 +19,17 @@ class Repository extends Component {
   }
 
   render() {
-
     const { name, repo, user } = this.props
-
     return(
       <div>
-      <a key = { name } onClick = { this.handleClick } className = { `panel-block ${this.state.isActive ? "is-active" : ""}` }>
-        <span className = { "panel-icon" }>
-          <i className = { "fa fa-book" } />
-        </span>
-        { repo.name } (Open issues: { repo.open_issues_count })
-      </a>
+        <a key = { name } className = { `panel-block ${this.state.isActive ? "is-active" : ""}` } onClick = { this.handleClick }>
+          <span className = { "panel-icon" }>
+            <a href = { repo.html_url } target = { "_blank" }>
+              <i className = { "fa fa-external-link" } />
+            </a>
+          </span>
+          <span onClick = { null }>{ repo.name } (Open issues: { repo.open_issues_count })</span>
+        </a>
       <RepositoryData
         user = { user }
         name = { repo.name }
