@@ -24,8 +24,8 @@ class RepositoryData extends Component {
   componentWillReceiveProps(nextProps) {
     if (nextProps.isActive && !(this.state.avgIssueClosingTime && this.state.issuesStatusRatioOverTime)) {
       this.setState({
-        fetchingAvgIssueClosingTime: true,
-        fetchingIssuesStatusRatioOverTime: true
+        "fetchingAvgIssueClosingTime": true,
+        "fetchingIssuesStatusRatioOverTime": true
       })
 
       getIssues(this.props.user, this.props.name)
