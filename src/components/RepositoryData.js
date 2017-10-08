@@ -85,14 +85,37 @@ class RepositoryData extends Component {
 
   render() {
     return(
-      <div style={{"display": this.props.isActive ? "block" : "none", "padding": "10px" }} >{"\n        "}<ul>{"\n          "}<AvgIssueClosingTimeCounter
+      <div style={{"display": this.props.isActive ? "block" : "none", "padding": "10px" }} >
+        <ul>
+          <a
+            className = { "button is-primary is-outlined is-fullwidth" }
+            style = {{ "width": "80%", "margin": "0 10%" }}
+            href = { this.props.repo.html_url }
+            target = { "_blank" }
+          >
+            Go to repo
+          </a>
+          <AvgIssueClosingTimeCounter
             avgIssueClosingTime = { this.state.avgIssueClosingTime }
             fetching = { this.state.fetchingAvgIssueClosingTime }
-          />{"\n          "}<List fetching = { this.state.fetchingNoCommentsClosedIssues } issues = { this.state.noCommentsClosedIssues } title = { "Closed issues with no comments" } />{"\n          "}<List fetching = { this.state.fetchingNoLabelIssues } issues = { this.state.noLabelIssues } title = { "Issues with no label" } />{"\n        "}</ul>{"\n        "}<IssuesStatusRatioOverTimeGraph
+          />
+          <List
+            fetching = { this.state.fetchingNoCommentsClosedIssues }
+            issues = { this.state.noCommentsClosedIssues }
+            title = { "Closed issues with no comments" }
+          />
+          <List
+            fetching = { this.state.fetchingNoLabelIssues }
+            issues = { this.state.noLabelIssues }
+            title = { "Issues with no label" }
+          />
+        </ul>
+        <IssuesStatusRatioOverTimeGraph
           issuesStatusRatioOverTime = { this.state.issuesStatusRatioOverTime }
           fetching = { this.state.fetchingIssuesStatusRatioOverTime }
           style = {{ "padding": "10px"}}
-        />{"\n      "}</div>
+        />
+      </div>
     )
   }
 }
