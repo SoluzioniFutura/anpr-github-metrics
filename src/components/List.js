@@ -17,8 +17,8 @@ class List extends React.Component {
 
   render() {
     return (
-      <div>
-        <button className = { "button is-primary is-outlined is-fullwidth" }>
+      <div style = {{ "display": "flex", "flexDirection": "column", "justifyContent": "center", "alignItems": "center" }}>
+        <button className = { "button is-primary is-outlined is-fullwidth" } style = {{ "width": "30%" }} >
           { this.props.title }
         </button>
         {
