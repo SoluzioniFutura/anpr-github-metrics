@@ -19,33 +19,34 @@ class Organization extends Component {
   componentDidMount() {
     this.setState({
       fetching: true
-    })
-    getRepos(user)
-      .then(data => {
-        this.setState({
-          repos: data,
-          fetching: false
+    }, () => {
+      getRepos(user)
+        .then(data => {
+          this.setState({
+            repos: data,
+            fetching: false
+          })
         })
-      })
+    })
   }
 
   render() {
     const component = [
-      <nav className = { 'panel' } key = { 'navbar' }>
-        <p className = { 'panel-heading' }>
+      <nav className = { "panel" } key = { "org-navbar" }>
+        <p className = { "panel-heading" }>
           { user }
         </p>
       </nav>
     ]
     return(
       this.state.fetching ?
-      component.concat([
-        <Repositories
-          key={"repos"}
-          repos={this.state.repos}
-          user={user}
-        />]) :
-      component.concat([<Loader key="loader" />])
+        component.concat([<Loader key="org-loader" />]) :
+        component.concat([
+          <Repositories
+            key={"org-repos"}
+            repos={this.state.repos}
+            user={user}
+          />])
     )
   }
 }

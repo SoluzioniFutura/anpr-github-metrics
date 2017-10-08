@@ -1,22 +1,16 @@
 import React from "react"
 
 import Repository from "./Repository"
-import Filter from './Filter'
+import Filter from "./Filter"
 
-const Repositories = props => [
-  <Filter style = {{ margin: '10px' }}/>,
-  <ul>
-    {
-      props.repos.map(repo =>
-        <li key={ repo.name }>
-          <Repository
-            data={ repo }
-            user={ props.user }
-          />
-        </li>
-      )
-    }
-  </ul>
+const Repositories = ({ user, repos }) => [
+  <Filter key={ "repos-filter" } style = {{ margin: "10px" }}/>,
+  ...repos.map(repo =>
+      <Repository
+        repo={ repo }
+        user={ user }
+      />
+  )
 ]
 
 export default Repositories

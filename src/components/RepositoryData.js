@@ -14,52 +14,56 @@ class RepositoryData extends Component {
     super(props)
     this.state = {
       avgIssueClosingTime: null,
-      issuesStatusRatioOverTime: null
+      fetchingAvgIssueClosingTime: false,
+      issuesStatusRatioOverTime: [],
+      fetchingIssuesStatusRatioOverTime: false
     }
   }
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.isActive && !(this.state.avgIssueClosingTime && this.state.issuesStatusRatioOverTime)) {
 
+      this.setState({
+        fetchingAvgIssueClosingTime: true,
+        fetchingIssuesStatusRatioOverTime: true
+      })
+
       getIssues(this.props.user, this.props.name)
         .then(issues => {
-
           getAvgIssueClosingTime(issues)
             .then(avgIssueClosingTime => {
               this.setState({
-                "avgIssueClosingTime": Number.isNaN(avgIssueClosingTime) ?
+                avgIssueClosingTime: Number.isNaN(avgIssueClosingTime) ?
                   "Data unavailable: too few issues" :
-                  avgIssueClosingTime
+                  avgIssueClosingTime,
+                fetchingAvgIssueClosingTime: false
               })
             })
-
           getIssuesStatusRatioOverTime(issues)
             .then(issuesStatusRatioOverTime => {
               this.setState({
-                "issuesStatusRatioOverTime": issuesStatusRatioOverTime.map(dataPoint => ({
-                  "openIssues": dataPoint.openIssues.length,
-                  "totalIssues": dataPoint.totalIssues.length,
-                  "time": dataPoint.time
-                }))
+                issuesStatusRatioOverTime: issuesStatusRatioOverTime.map(dataPoint => ({
+                  openIssues: dataPoint.openIssues.length,
+                  totalIssues: dataPoint.totalIssues.length,
+                  time: dataPoint.time
+                })),
+                fetchingIssuesStatusRatioOverTime: false
               })
             })
-
-      })
+        })
     }
   }
 
   render() {
     return(
-      <div style={{"display": this.props.isActive ? "block" : "none" }} >
+      <div style={{"display": this.props.isActive ? "block" : "none", padding: '10px' }} >
         <AvgIssueClosingTimeCounter
           avgIssueClosingTime = { this.state.avgIssueClosingTime }
+          fetching = { this.state.fetchingAvgIssueClosingTime }
         />
         <IssuesStatusRatioOverTimeGraph
-          issuesStatusRatioOverTime = {
-            this.state.issuesStatusRatioOverTime ?
-              this.state.issuesStatusRatioOverTime :
-              'loading'
-          }
+          issuesStatusRatioOverTime = { this.state.issuesStatusRatioOverTime }
+          fetching = { this.state.fetchingIssuesStatusRatioOverTime }
           style = {{ padding: '10px'}}
         />
       </div>

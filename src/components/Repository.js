@@ -19,15 +19,20 @@ class Repository extends Component {
   }
 
   render() {
+
+    const { name, repo, user } = this.props
+
     return(
       <div>
-      <a key = { this.props.name } onClick = { this.handleClick } className = { 'panel-block is-active columns is-mobile' }>
-        <span className = { 'column is-4' }>{ this.props.data.name }</span>
-        <span className = { 'column is-offset-4' } style = {{ float: 'right' }}>Open issues: { this.props.data.open_issues_count }</span>
+      <a key = { name } onClick = { this.handleClick } className = { 'panel-block' }>
+        <span className = { 'panel-icon' }>
+          <i className = { 'fa fa-book' } />
+        </span>
+        { repo.name } (Open issues: { repo.open_issues_count })
       </a>
       <RepositoryData
-        user = { this.props.user }
-        name = { this.props.data.name }
+        user = { user }
+        name = { repo.name }
         isActive = { this.state.isActive }
       />
       </div>
