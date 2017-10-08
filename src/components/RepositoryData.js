@@ -95,19 +95,11 @@ class RepositoryData extends Component {
           >
             Go to repo
           </a>
+          <List fetching = { this.state.fetchingNoCommentsClosedIssues } issues = { this.state.noCommentsClosedIssues } title = { "Closed issues with no comments" } />
+          <List fetching = { this.state.fetchingNoLabelIssues } issues = { this.state.noLabelIssues } title = { "Issues with no label" } />
           <AvgIssueClosingTimeCounter
             avgIssueClosingTime = { this.state.avgIssueClosingTime }
             fetching = { this.state.fetchingAvgIssueClosingTime }
-          />
-          <List
-            fetching = { this.state.fetchingNoCommentsClosedIssues }
-            issues = { this.state.noCommentsClosedIssues }
-            title = { "Closed issues with no comments" }
-          />
-          <List
-            fetching = { this.state.fetchingNoLabelIssues }
-            issues = { this.state.noLabelIssues }
-            title = { "Issues with no label" }
           />
         </ul>
         <IssuesStatusRatioOverTimeGraph
