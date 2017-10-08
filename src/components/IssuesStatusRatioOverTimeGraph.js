@@ -2,11 +2,11 @@ import React from "react"
 
 import Loader from "./Loader"
 
-const IssuesStatusRatioOverTimeGraph = props =>
+const IssuesStatusRatioOverTimeGraph = ({ issuesStatusRatioOverTime }) =>
   <p>
     {
-      props.issuesStatusRatioOverTime !== "loading" ?
-        props.issuesStatusRatioOverTime.map(dataPoint => dataPoint.time + ": " + dataPoint.openIssues + "/" + dataPoint.totalIssues + " ") :
+      issuesStatusRatioOverTime !== "loading" ?
+        issuesStatusRatioOverTime.map(dataPoint => dataPoint.time + ": " + dataPoint.openIssues + "/" + dataPoint.totalIssues + " ") :
         <Loader />
     }
   </p>

@@ -3,14 +3,14 @@ import prettyMs from "pretty-ms"
 
 import Loader from "./Loader"
 
-const AvgIssueClosingTimeCounter = props =>
+const AvgIssueClosingTimeCounter = ({ avgIssueClosingTime }) =>
     <span>
       {"Avg Issue Closing Time: "}
       {
-        props.avgIssueClosingTime !== "loading" ?
-          typeof props.avgIssueClosingTime !== "number" || Number.isNaN(props.avgIssueClosingTime) ?
+        avgIssueClosingTime !== "loading" ?
+          typeof avgIssueClosingTime !== "number" || Number.isNaN(avgIssueClosingTime) ?
             "Data unavailable: too few issues" :
-            prettyMs(Math.round(props.avgIssueClosingTime), { "verbose": true })
+            prettyMs(Math.round(avgIssueClosingTime), { "verbose": true })
           :
           <Loader />
       }
