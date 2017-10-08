@@ -44,20 +44,16 @@ class RepositoryData extends Component {
   render() {
     return(
       <div style={{"display": this.props.isActive ? "block" : "none" }}>
-        {
-          <AvgIssueClosingTimeCounter
-            avgIssueClosingTime={this.state && this.state.avgIssueClosingTime ? this.state.avgIssueClosingTime : "loading"}
-          />
-        }
-        {
-          <IssuesStatusRatioOverTimeGraph
-            issuesStatusRatioOverTime={
-              this.state && this.state.issuesStatusRatioOverTime ?
-                this.state.issuesStatusRatioOverTime :
-                "loading"
-            }
-          />
-        }
+        <AvgIssueClosingTimeCounter
+          avgIssueClosingTime={this.state && this.state.avgIssueClosingTime ? this.state.avgIssueClosingTime : "loading"}
+        />
+        <IssuesStatusRatioOverTimeGraph
+          issuesStatusRatioOverTime={
+            this.state && this.state.issuesStatusRatioOverTime ?
+              this.state.issuesStatusRatioOverTime :
+              "loading"
+          }
+        />
       </div>
     )
   }

@@ -64,9 +64,9 @@ export const getIssuesStatusRatioOverTime = (
   resolve(out)
 })
 
-const getIssuesNoLabel = () => new Promise(resolve => {
+export const getNoLabelIssues = issues => new Promise(resolve => resolve(issues.filter(({ labels, state }) => state === 'open' && !labels.length )))
 
-})
+export const getNoCommentsClosedIssues = issues => new Promise(resolve => resolve(issues.filter(({ comments, state }) => state === 'closed' && comments === 0 )))
 
 const issueExistsAtTime = ({ created_at }, curTime) => new Date(created_at).getTime() < curTime
 
