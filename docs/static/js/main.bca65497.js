@@ -46200,7 +46200,7 @@ module.exports = Project;
 /* 594 */
 /***/ (function(module, exports) {
 
-module.exports = {"username":"giowe","password":"Kender123!"}
+module.exports = {}
 
 /***/ }),
 /* 595 */
@@ -46254,4 +46254,4 @@ registerValidSW(swUrl);}}).catch(function(){console.log("No internet connection 
 
 /***/ })
 /******/ ]);
-//# sourceMappingURL=main.0265d949.js.map
+//# sourceMappingURL=main.bca65497.js.map
